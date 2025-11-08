@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakthi Murugan Mobiles - POS</title>
+    <meta name="description" content="Simple POS for Sakthi Murugan Mobiles.">
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="/assets/logo.svg" as="image" type="image/svg+xml">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="/">
+            <img src="/assets/logo.svg" alt="Sakthi Murugan Mobiles logo" width="36" height="36">
+            <span>Sakthi Murugan Mobiles</span>
+        </a>
+        <nav class="nav">
+            <a href="/index.html" class="active">POS</a>
+            <a href="/reports.html">Sales</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>POS - Quick Billing</h1>
+                <p>Tap an item, enter amount, add to cart. Checkout when ready.</p>
+            </div>
+        </section>
+
+        <section class="pos">
+            <div class="pos-layout">
+                <div class="pos-left">
+                    <h2>Items</h2>
+                    <div id="product-grid" class="product-grid"></div>
+                </div>
+                <div class="pos-right">
+                    <h2>Selected</h2>
+                    <div class="card selected-card">
+                        <img id="selected-image" src="/assets/icons/placeholder.svg" alt="Selected item" width="160" height="160" style="margin:0 auto;">
+                        <p id="selected-name" style="text-align:center; margin:10px 0 0; color: var(--color-text-muted);">Choose an item</p>
+                        <input id="custom-name" type="text" placeholder="Enter custom item name" style="display:none; width:100%; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a; color:#eef2f7;">
+                        <label style="display:block; margin-top:12px;">
+                            <span>Amount (₹)</span>
+                            <input id="amount-input" type="number" min="0" step="1" placeholder="Enter amount" style="width:100%; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a; color:#eef2f7;">
+                        </label>
+                        <button id="add-to-cart" class="btn btn-primary" style="width:100%; margin-top:12px;">Add to cart</button>
+                    </div>
+
+                    <h2 style="margin-top:18px;">Cart</h2>
+                    <div id="cart-list" class="card" style="max-height:240px; overflow:auto;"></div>
+                    <div class="card" style="margin-top:10px; display:flex; justify-content:space-between; align-items:center;">
+                        <strong>Total</strong>
+                        <strong id="cart-total">₹0</strong>
+                    </div>
+
+                    <div class="card" style="margin-top:10px;">
+                        <label>
+                            <span>Customer name</span>
+                            <input id="customer-name" type="text" placeholder="Enter customer name" style="width:100%; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a; color:#eef2f7;">
+                        </label>
+                        <label style="margin-top:8px; display:block;">
+                            <span>Customer phone (optional)</span>
+                            <input id="customer-phone" type="text" placeholder="Enter phone" style="width:100%; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a; color:#eef2f7;">
+                        </label>
+                        <div style="margin-top:10px; display:grid; gap:8px;">
+                            <label style="display:flex; gap:8px; align-items:center;"><input type="radio" name="pay" value="online" checked> Online pay (GPay)</label>
+                            <label style="display:flex; gap:8px; align-items:center;"><input type="radio" name="pay" value="offline"> Offline pay (Cash/Card)</label>
+                        </div>
+                        <div id="online-box" style="margin-top:12px; text-align:center;">
+                            <img id="scanner-image" src="/assets/qr-gpay.jpg" alt="GPay scanner" width="160" height="160" style="margin:0 auto; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a;">
+                            <p style="color:var(--color-text-muted); margin-top:8px;">Scan to pay</p>
+                            <input id="scanner-upload" type="file" accept="image/*" style="margin-top:8px;">
+                            <button id="scanner-reset" class="btn btn-secondary" type="button" style="margin-top:8px;">Reset QR</button>
+                        </div>
+                        <div id="offline-box" style="display:none; margin-top:12px; color:var(--color-text-muted);">
+                            Bill will open for print/PDF on checkout.
+                        </div>
+                        <button id="checkout" class="btn btn-secondary" style="width:100%; margin-top:12px;">Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div>
+                <strong>Sakthi Murugan Mobiles</strong>
+                <p>Simple POS for daily sales.</p>
+            </div>
+            <div>
+                <nav class="footer-nav">
+                    <a href="/pos.html">POS</a>
+                    <a href="/reports.html">Reports</a>
+                    <a href="/contact.html">Contact</a>
+                </nav>
+            </div>
+            <div>
+                <p>© <span id="year"></span> Sakthi Murugan Mobiles. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="/js/index-pos.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
+
+
