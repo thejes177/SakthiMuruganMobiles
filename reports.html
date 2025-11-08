@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakthi Murugan Mobiles - Reports</title>
+    <meta name="description" content="Sales reports for Sakthi Murugan Mobiles.">
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="/">
+            <img src="/assets/logo.svg" alt="Sakthi Murugan Mobiles logo" width="36" height="36">
+            <span>Sakthi Murugan Mobiles</span>
+        </a>
+        <nav class="nav">
+            <a href="/index.html">Home</a>
+            <a href="/pos.html">POS</a>
+            <a href="/reports.html" class="active">Reports</a>
+            <a href="/contact.html">Contact</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </header>
+
+    <main>
+        <section id="admin-gate" class="features">
+            <div class="card" style="max-width:460px; margin:16px auto;">
+                <h2 style="margin-top:0;">Admin portal</h2>
+                <p style="color:var(--color-text-muted);">This section is for admin only. Please sign in.</p>
+                <label style="display:block; margin-top:8px;">
+                    <span>ID</span>
+                    <input id="admin-id" type="text" placeholder="Enter ID" style="width:100%; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a; color:#eef2f7;">
+                </label>
+                <label style="display:block; margin-top:8px;">
+                    <span>Password</span>
+                    <input id="admin-pass" type="password" placeholder="Enter password" style="width:100%; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a; color:#eef2f7;">
+                </label>
+                <button id="admin-login" class="btn btn-primary" type="button" style="margin-top:10px; width:100%;">Sign in</button>
+                <p id="admin-msg" style="color:#ffb4b4; margin-top:8px;"></p>
+            </div>
+        </section>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Sales reports</h1>
+                <p>View totals by day and over selected periods.</p>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Filters</h2>
+            <div class="card">
+                <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+                    <button class="btn btn-secondary" data-range="today">Today</button>
+                    <button class="btn btn-secondary" data-range="7d">7 days</button>
+                    <button class="btn btn-secondary" data-range="3m">3 months</button>
+                    <button class="btn btn-secondary" data-range="6m">6 months</button>
+                    <div style="display:flex; gap:8px; align-items:center;">
+                        <input type="date" id="from-date" style="padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a; color:#eef2f7;">
+                        <input type="date" id="to-date" style="padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a; color:#eef2f7;">
+                        <button class="btn btn-primary" id="apply-range">Apply</button>
+                    </div>
+                    <div style="margin-left:auto; display:flex; gap:8px;">
+                        <button class="btn btn-primary" id="close-today">Close Today Sales</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Summary</h2>
+            <div class="card" id="summary">
+                <p><strong>Total sales:</strong> ₹ <span id="sum-amount">0</span></p>
+                <p><strong>Total orders:</strong> <span id="sum-orders">0</span></p>
+                <p><strong>Top categories:</strong> <span id="top-cats">–</span></p>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Orders</h2>
+            <div class="card">
+                <div id="orders-list" style="display:grid; gap:10px;"></div>
+            </div>
+        </section>
+        <section style="display:none;">
+            <div id="order-dialog" class="card" style="position:fixed; inset:0; margin:auto; width:min(560px, 94vw); max-height:80vh; overflow:auto; background:var(--color-muted-surface); border:1px solid rgba(255,255,255,0.12); border-radius:14px; padding:16px; z-index:100; display:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h3 style="margin:0;">Order details</h3>
+                    <button id="order-dialog-close" class="btn btn-secondary" type="button">Close</button>
+                </div>
+                <div id="order-dialog-body" style="margin-top:12px; display:grid; gap:8px;"></div>
+            </div>
+            <div id="order-dialog-backdrop" style="position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:90; display:none;"></div>
+
+            <div id="close-dialog" class="card" style="position:fixed; inset:0; margin:auto; width:min(620px, 94vw); max-height:80vh; overflow:auto; background:var(--color-muted-surface); border:1px solid rgba(255,255,255,0.12); border-radius:14px; padding:16px; z-index:100; display:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h3 style="margin:0;">Today Sales Summary</h3>
+                    <button id="close-dialog-close" class="btn btn-secondary" type="button">Done</button>
+                </div>
+                <div id="close-dialog-body" style="margin-top:12px; display:grid; gap:8px;"></div>
+            </div>
+            <div id="close-dialog-backdrop" style="position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:90; display:none;"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div>
+                <strong>Sakthi Murugan Mobiles</strong>
+                <p>Track your daily and monthly sales.</p>
+            </div>
+            <div>
+                <nav class="footer-nav">
+                    <a href="/pos.html">POS</a>
+                    <a href="/reports.html" class="active">Reports</a>
+                </nav>
+            </div>
+            <div>
+                <p>© <span id="year"></span> Sakthi Murugan Mobiles.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/reports.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
+
+

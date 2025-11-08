@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Business - Contact</title>
+    <meta name="description" content="Contact Your Business for quotes, questions, and bookings.">
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="/">
+            <img src="/assets/logo.svg" alt="Sakthi Murugan Mobiles logo" width="36" height="36">
+            <span>Sakthi Murugan Mobiles</span>
+        </a>
+        <nav class="nav">
+            <a href="/index.html">Home</a>
+            <a href="/pos.html">POS</a>
+            <a href="/reports.html">Reports</a>
+            <a href="/contact.html" class="active">Contact</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Get in touch</h1>
+                <p>Questions or a custom quote? Send us a message and we’ll respond soon.</p>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Contact form</h2>
+            <form class="card" id="contact-form" action="https://formspree.io/f/your-id" method="POST">
+                <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <label>
+                        <span class="sr-only">Name</span>
+                        <input required name="name" type="text" placeholder="Your name" style="width:100%; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a; color:#eef2f7;" />
+                    </label>
+                    <label>
+                        <span class="sr-only">Email</span>
+                        <input required name="email" type="email" placeholder="Your email" style="width:100%; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a; color:#eef2f7;" />
+                    </label>
+                </div>
+                <label style="display:block; margin-top:12px;">
+                    <span class="sr-only">Message</span>
+                    <textarea required name="message" rows="5" placeholder="Tell us what you need" style="width:100%; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a; color:#eef2f7;"></textarea>
+                </label>
+                <div style="margin-top:12px; display:flex; gap:10px;">
+                    <button class="btn btn-primary" type="submit">Send message</button>
+                    <a class="btn btn-secondary" href="mailto:hello@yourbusiness.com">Email us</a>
+                </div>
+                <p style="color:var(--color-text-muted); margin-top:10px;">Tip: Replace the form action with your Formspree/Netlify form endpoint or use mailto above.</p>
+            </form>
+        </section>
+
+        <section class="features">
+            <h2>Contact details</h2>
+            <div class="card">
+                <p><strong>Email:</strong> thejestheju16@gmail.com</p>
+                <p><strong>Phone:</strong> 6379753484</p>
+                <p><strong>Hours:</strong> Mon – Sat, 9:30 AM – 9:00 PM</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div>
+                <strong>Sakthi Murugan Mobiles</strong>
+                <p>Simple POS for daily sales.</p>
+            </div>
+            <div>
+                <nav class="footer-nav">
+                    <a href="/pos.html">POS</a>
+                    <a href="/reports.html">Reports</a>
+                    <a href="/contact.html" class="active">Contact</a>
+                </nav>
+            </div>
+            <div>
+                <p>© <span id="year"></span> Sakthi Murugan Mobiles. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakthi Murugan Mobiles - POS</title>
+    <meta name="description" content="Point of sale for Sakthi Murugan Mobiles.">
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="/">
+            <img src="/assets/logo.svg" alt="Sakthi Murugan Mobiles logo" width="36" height="36">
+            <span>Sakthi Murugan Mobiles</span>
+        </a>
+        <nav class="nav">
+            <a href="/index.html">Home</a>
+            <a href="/pos.html" class="active">POS</a>
+            <a href="/reports.html">Reports</a>
+            <a href="/contact.html">Contact</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Point of Sale</h1>
+                <p>Select category, enter amount, add to cart, then checkout.</p>
+            </div>
+        </section>
+
+        <section class="features" id="categories-section">
+            <h2>Categories</h2>
+            <div class="grid" id="categories-grid"></div>
+        </section>
+
+        <section class="features" id="entry-section">
+            <h2>Item entry</h2>
+            <div class="card" id="entry-card">
+                <div style="display:flex; gap:16px; align-items:center;">
+                    <img id="entry-image" src="/assets/categories/placeholder.svg" alt="Selected item" width="72" height="72" style="border-radius:12px; border:1px solid rgba(255,255,255,0.08);">
+                    <div style="flex:1;">
+                        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                            <input id="entry-name" type="text" placeholder="Item name" style="flex:1; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a; color:#eef2f7;">
+                            <input id="entry-amount" type="number" inputmode="decimal" min="0" step="1" placeholder="Amount (₹)" style="width:180px; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a; color:#eef2f7;">
+                        </div>
+                        <input id="entry-notes" type="text" placeholder="Notes (optional)" style="margin-top:10px; width:100%; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a; color:#eef2f7;">
+                        <div style="margin-top:12px; display:flex; gap:10px;">
+                            <button class="btn btn-primary" id="add-to-cart">Add to cart</button>
+                            <button class="btn btn-secondary" id="clear-entry">Clear</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="cart-section">
+            <h2>Cart</h2>
+            <div class="card">
+                <div id="cart-list" style="display:grid; gap:10px;"></div>
+                <div style="margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
+                    <strong>Total: ₹ <span id="cart-total">0</span></strong>
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn btn-secondary" id="clear-cart">Clear cart</button>
+                        <button class="btn btn-primary" id="go-checkout">Go to billing</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="checkout-section">
+            <h2>Billing</h2>
+            <div class="card">
+                <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <input id="customer-name" type="text" placeholder="Customer name" style="width:100%; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a; color:#eef2f7;">
+                    <input id="customer-phone" type="text" placeholder="Phone (optional)" style="width:100%; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#10121a; color:#eef2f7;">
+                </div>
+                <div style="margin-top:12px; display:flex; gap:20px; align-items:center;">
+                    <label><input type="radio" name="pay" value="online" checked> Online pay</label>
+                    <label><input type="radio" name="pay" value="offline"> Offline pay (cash/card)</label>
+                </div>
+                <div id="online-box" style="margin-top:12px; display:flex; gap:16px; align-items:center;">
+                    <img id="qr-image" src="/assets/qr-gpay.jpg" alt="GPay QR" width="160" height="160" style="border-radius:12px; border:1px solid rgba(255,255,255,0.12); background:#0f1117;">
+                    <div>
+                        <p style="color:var(--color-text-muted); margin:0 0 8px;">Scan to pay. You can set your GPay QR below.</p>
+                        <input id="qr-upload" type="file" accept="image/*">
+                        <div style="margin-top:8px; display:flex; gap:8px;">
+                            <button class="btn btn-secondary" id="qr-reset" type="button">Reset QR</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="offline-box" style="margin-top:12px; display:none;">
+                    <button class="btn btn-primary" id="generate-invoice">Generate PDF invoice</button>
+                </div>
+                <div style="margin-top:12px; display:flex; gap:10px;">
+                    <button class="btn btn-primary" id="complete-order">Complete order</button>
+                    <button class="btn btn-secondary" id="reset-order">New order</button>
+                </div>
+                <p id="status-msg" style="margin-top:10px; color:var(--color-text-muted);"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div>
+                <strong>Sakthi Murugan Mobiles</strong>
+                <p>Simple billing for your daily sales.</p>
+            </div>
+            <div>
+                <nav class="footer-nav">
+                    <a href="/pos.html" class="active">POS</a>
+                    <a href="/reports.html">Reports</a>
+                </nav>
+            </div>
+            <div>
+                <p>© <span id="year"></span> Sakthi Murugan Mobiles.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="/js/pos.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
+
+
